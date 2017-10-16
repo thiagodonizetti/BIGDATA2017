@@ -8,3 +8,6 @@ applyCollatz x
  |otherwise = collatz x : applyCollatz (collatz x)
 
 collatzLen x = length $ applyCollatz x
+
+main = do
+   print(collatzLen 4)

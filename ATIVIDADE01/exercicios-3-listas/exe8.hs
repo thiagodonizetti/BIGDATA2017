@@ -11,3 +11,6 @@ collatzLen x = length $ applyCollatz x
 
 
 maxColl  = maximum[collatzLen i | i<- [1..1000000]]
+
+main = do
+  print maxColl
