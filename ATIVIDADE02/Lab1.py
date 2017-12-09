@@ -139,14 +139,46 @@ mapResult = dataset.map(lambda x: x*5)
 
 # Filtre eliminando os elementos ímpares
 # No Python "x % 2" é o resultado do resto da divisão de x por 2
-filterResult = mapResult.filter(lambda x: x%2 == 0)
+filterResult = dataset.filter(lambda x: x%2 == 0)
 
 # Some os elementos
-reduceResult = filterResult.reduce(lambda x, y: x+y)
+reduceResult = dataset.reduce(lambda x, y: x+y)
 
 print 'mapResult: {0}'.format(mapResult)
 print '\nfilterResult: {0}'.format(filterResult)
 print '\nreduceResult: {0}'.format(reduceResult)
 
+assert mapResult == FuncionalW([0, 5, 10, 15, 20, 25, 30, 35, 40, 45]),"Valor incorreto para mapResult"
+print "Teste 1 OK"
+
+assert filterResult == FuncionalW([0, 2, 4, 6, 8]), "Valor incorreto para filterResult"
+print "Teste 2 OK"
+
+assert reduceResult == 45, "Valor incorreto para reduceResult"
+print "Teste 3 OK"
+
+# EXERCICIO
 
 
+
+# split() divide a string em palavras
+Texto = FuncionalW("Esse texto tem varias palavras cada linha tem palavras escritas Esse texto esta escrito".split())
+
+# Vamos fazer uma contagem da palavra 'palavras' no texto
+
+# Crie uma função lambda que recebe duas entradas e retorna se são iguais ou não
+Igual = lambda x, y : x == y
+
+# Crie uma função lambda que utiliza a função Igual para detectar se a entrada é igual a palavra 'palavras'
+DetectaPalavra = lambda x: Igual(x, 'palavras')
+
+# 1) Filtre as palavras iguais a 'palavras'
+# 2) Mapeie todos os elementos para o valor 1
+# 3) Reduza para a somatória
+contagem = (Texto
+            .filter(DetectaPalavra)
+            .map(lambda x: 1)
+            .reduce(lambda x, y: x+y)
+            )
+
+print "Existem {} ocorrências de 'palavras'".format(contagem)
